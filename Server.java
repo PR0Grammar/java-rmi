@@ -8,14 +8,19 @@ public class Server extends Chatroom{
         int port = Integer.parseInt(args[1]);
 
         try{
+            //Create registry
+            Registry reg = LocateRegistry.createRegistry(port);
+
             // The remote object used by client
             Chatroom c = new Chatroom();
-            // Create stub
-            Chatroom chatroomStub = (Chatroom) UnicastRemoteObject.exportObject(c, 0);
-            // Create registry and bind remote object
-            Registry reg = LocateRegistry.createRegistry(port);
-            reg.bind("Chatroom", chatroomStub);
+            c.setRegistry(reg);
             
+            // Create stub
+            ChatroomIntf chatroomStub = (ChatroomIntf) UnicastRemoteObject.exportObject(c, 0);
+            
+            // Bind remote object
+            reg.bind("Chatroom", chatroomStub);
+
             System.out.println("Chatroom Server Ready");
         }
         catch(Exception e){
