@@ -37,6 +37,7 @@ public class Client implements ClientIntf{
         System.out.println(m);
     }
 
+    // Requires two arguments: hostname and port
     public static void main(String[] args){
         String host = args[0];
         int port = Integer.parseInt(args[1]);
@@ -44,7 +45,7 @@ public class Client implements ClientIntf{
         Client client = new Client();
 
         try{
-            // Get registry and remote object
+            // Get registry and server stub
             Registry reg = LocateRegistry.getRegistry(host, port);
             ChatroomIntf chatroom = (ChatroomIntf) reg.lookup("Chatroom");
             
@@ -56,6 +57,7 @@ public class Client implements ClientIntf{
             client.setChatroom(chatroom);
             client.setName(clientName);
 
+            // Welcome the client to chatroom
             chatroom.welcome(clientName);
 
 

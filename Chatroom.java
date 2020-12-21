@@ -40,7 +40,7 @@ public class Chatroom implements ChatroomIntf {
         broadcastToAll(clientName + " has joined the Chatroom.");
     }
 
-    // Send message to all other clients except to myself
+    // Send message to all other clients except to the method invoker
     public void clientToAll(String clientName, String m) throws RemoteException{
         if(reg == null){
             throw new RemoteException("Registry is not provided");
