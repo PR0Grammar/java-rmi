@@ -1,4 +1,4 @@
-# java-rmi
+# Java RMI Chatroom
 Simple chatroom example using Java RMI
 
 
